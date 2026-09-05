@@ -1,24 +1,35 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bird Calls Malta</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;background:#f4f8f5;color:#17251d}
-header{background:#123b2a;color:#fff;padding:18px}.nav{max-width:850px;margin:auto}.logo{font-size:23px;font-weight:900}.logo span{color:#8bd17c}
-main{max-width:850px;margin:auto;padding:24px 15px 60px}.hero{background:linear-gradient(135deg,#145c3c,#27784c);color:#fff;border-radius:22px;padding:30px 22px;margin-bottom:25px}.hero h1{font-size:42px;line-height:1.05;margin:0 0 10px}.hero p{margin:0;color:#dcefe2;line-height:1.55}
-h2{font-size:25px;margin:25px 0 12px}.bird{background:#fff;border-radius:17px;margin:12px 0;padding:16px;display:flex;align-items:center;gap:15px;box-shadow:0 4px 18px #17362210;border:1px solid #e2eae4}.icon{width:58px;height:58px;border-radius:15px;background:#e6f3e8;display:grid;place-items:center;font-size:28px;flex:none}.info{flex:1}.info h3{margin:0 0 4px}.info p{margin:0;color:#718076;font-size:14px}.price{display:block;text-align:center;margin-bottom:5px;font-weight:900;color:#123b2a}.buy{border:0;border-radius:11px;padding:12px 16px;background:#123b2a;color:#fff;font-weight:800;cursor:pointer}
-.notice{background:#fff7df;border:1px solid #eedba4;border-radius:14px;padding:14px;margin-top:22px;color:#685a2e;font-size:13px;line-height:1.5}footer{text-align:center;color:#718076;padding:25px}
-@media(max-width:520px){.hero h1{font-size:34px}.bird{align-items:flex-start}.buy{padding:11px 12px}.icon{width:50px;height:50px}}
-</style></head>
+body{margin:0;font-family:Arial,sans-serif;background:#f3f8f1;color:#17351f}
+header{background:#2f6b3f;color:white;text-align:center;padding:28px 16px}
+header h1{margin:0 0 8px;font-size:32px} header p{margin:0}
+main{max-width:850px;margin:30px auto;padding:0 16px 40px}
+.intro{text-align:center;margin-bottom:25px}
+.card{background:white;border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.bird-name{font-size:20px;font-weight:bold}.meta{color:#647067;margin-top:5px;font-size:14px}
+audio{width:100%;margin-top:15px}.price{font-weight:bold;font-size:18px}
+.buy{display:inline-block;background:#2f6b3f;color:white;text-decoration:none;padding:11px 20px;border-radius:9px;font-weight:bold}
+.note{text-align:center;background:#e4f0e2;padding:14px;border-radius:10px;margin-top:25px;font-size:14px}
+</style>
+</head>
 <body>
-<header><div class="nav"><div class="logo">🐦 Bird Calls <span>Malta</span></div></div></header>
+<header><h1>🐦 Bird Calls Malta</h1><p>Listen to a bird call before you purchase.</p></header>
 <main>
-<section class="hero"><h1>Bird Calls Malta</h1><p>Choose a bird call and purchase it for <strong>€3.00</strong>.</p></section>
-<h2>Bird calls — €3 each</h2>
-<div class="bird"><div class="icon">🐦</div><div class="info"><h3>Bird Call 01</h3><p>Malta bird recording · MP3</p></div><div><span class="price">€3.00</span><button class="buy" onclick="buy()">BUY</button></div></div>
-<div class="bird"><div class="icon">🦜</div><div class="info"><h3>Bird Call 02</h3><p>Malta bird recording · MP3</p></div><div><span class="price">€3.00</span><button class="buy" onclick="buy()">BUY</button></div></div>
-<div class="bird"><div class="icon">🕊️</div><div class="info"><h3>Bird Call 03</h3><p>Malta bird recording · MP3</p></div><div><span class="price">€3.00</span><button class="buy" onclick="buy()">BUY</button></div></div>
-<div class="notice"><strong>Payment:</strong> BUY opens your Revolut payment page. There is no download button.</div>
-</main><footer>© 2026 Bird Calls Malta</footer>
-<script>function buy(){window.location.href="https://revolut.me/abela1";}</script>
-</body></html>
+<div class="intro"><h2>Bird Calls — €3 each</h2><p>Press play to listen to a preview, then press BUY to purchase.</p></div>
+
+<div class="card"><div class="row"><div><div class="bird-name">Bird Call 01</div><div class="meta">Malta bird recording · MP3</div></div><div class="price">€3.00</div><a class="buy" href="https://revolut.me/abela1" target="_blank" rel="noopener">BUY</a></div><audio controls preload="none"><source src="preview-01.mp3" type="audio/mpeg"></audio></div>
+
+<div class="card"><div class="row"><div><div class="bird-name">Bird Call 02</div><div class="meta">Malta bird recording · MP3</div></div><div class="price">€3.00</div><a class="buy" href="https://revolut.me/abela1" target="_blank" rel="noopener">BUY</a></div><audio controls preload="none"><source src="preview-02.mp3" type="audio/mpeg"></audio></div>
+
+<div class="card"><div class="row"><div><div class="bird-name">Bird Call 03</div><div class="meta">Malta bird recording · MP3</div></div><div class="price">€3.00</div><a class="buy" href="https://revolut.me/abela1" target="_blank" rel="noopener">BUY</a></div><audio controls preload="none"><source src="preview-03.mp3" type="audio/mpeg"></audio></div>
+
+<div class="note">🎧 Clients can listen to the preview on the website. There is no download button. Payment is through Revolut when they press BUY.</div>
+</main>
+</body>
+</html>
