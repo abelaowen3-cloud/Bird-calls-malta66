@@ -1,55 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BeatBox — MP3 Store</title>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bird Calls Malta</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f7fb;color:#171923}
-header{background:#11131a;color:#fff;padding:22px 18px;position:sticky;top:0;z-index:5}
-nav{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center}.logo{font-size:24px;font-weight:800}.logo b{color:#7c5cff}
-.cart{background:#7c5cff;border:0;color:#fff;padding:11px 15px;border-radius:10px;font-weight:bold}
-main{max-width:900px;margin:auto;padding:28px 16px 70px}
-.hero{background:#171923;color:white;border-radius:22px;padding:34px 25px;margin-bottom:25px}.hero h1{font-size:42px;line-height:1;margin:0 0 12px}.hero p{color:#b9bdc9;line-height:1.5}.hero button{background:#7c5cff;color:white;border:0;padding:13px 18px;border-radius:10px;font-weight:bold}
-h2{margin:28px 0 15px}.track{background:white;border-radius:16px;padding:15px;margin:12px 0;display:grid;grid-template-columns:65px 1fr auto;gap:14px;align-items:center;box-shadow:0 3px 15px #15182a0b}.art{width:65px;height:65px;border-radius:12px;background:linear-gradient(135deg,#7c5cff,#ef5da8);display:grid;place-items:center;color:#fff;font-size:25px}.track h3{margin:0 0 5px}.track small{color:#777}.price{font-weight:800;margin-right:10px}.buy{border:0;background:#171923;color:#fff;border-radius:9px;padding:10px 13px;font-weight:bold}.player{margin-top:9px;width:100%;height:32px}
-.cartbox{display:none;position:fixed;right:15px;top:78px;width:min(380px,calc(100% - 30px));background:#fff;border-radius:16px;padding:20px;box-shadow:0 15px 50px #0003;z-index:10}.cartbox.show{display:block}.item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee}.checkout{width:100%;margin-top:15px;padding:13px;border:0;border-radius:10px;background:#7c5cff;color:white;font-weight:bold}.note{font-size:12px;color:#777;line-height:1.5}
-footer{text-align:center;color:#888;padding:25px}
-@media(max-width:600px){.hero h1{font-size:35px}.track{grid-template-columns:52px 1fr}.art{width:52px;height:52px}.track .buyrow{grid-column:2}.price{float:left}.buy{float:right}}
-</style>
-</head>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Arial,sans-serif;background:#f4f8f5;color:#17251d}
+header{background:#123b2a;color:#fff;padding:18px}.nav{max-width:850px;margin:auto}.logo{font-size:23px;font-weight:900}.logo span{color:#8bd17c}
+main{max-width:850px;margin:auto;padding:24px 15px 60px}.hero{background:linear-gradient(135deg,#145c3c,#27784c);color:#fff;border-radius:22px;padding:30px 22px;margin-bottom:25px}.hero h1{font-size:42px;line-height:1.05;margin:0 0 10px}.hero p{margin:0;color:#dcefe2;line-height:1.55}
+h2{font-size:25px;margin:25px 0 12px}.bird{background:#fff;border-radius:17px;margin:12px 0;padding:16px;display:flex;align-items:center;gap:15px;box-shadow:0 4px 18px #17362210;border:1px solid #e2eae4}.icon{width:58px;height:58px;border-radius:15px;background:#e6f3e8;display:grid;place-items:center;font-size:28px;flex:none}.info{flex:1}.info h3{margin:0 0 4px}.info p{margin:0;color:#718076;font-size:14px}.price{display:block;text-align:center;margin-bottom:5px;font-weight:900;color:#123b2a}.buy{border:0;border-radius:11px;padding:12px 16px;background:#123b2a;color:#fff;font-weight:800;cursor:pointer}
+.notice{background:#fff7df;border:1px solid #eedba4;border-radius:14px;padding:14px;margin-top:22px;color:#685a2e;font-size:13px;line-height:1.5}footer{text-align:center;color:#718076;padding:25px}
+@media(max-width:520px){.hero h1{font-size:34px}.bird{align-items:flex-start}.buy{padding:11px 12px}.icon{width:50px;height:50px}}
+</style></head>
 <body>
-<header><nav><div class="logo">Beat<b>Box</b></div><button class="cart" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</button></nav></header>
+<header><div class="nav"><div class="logo">🐦 Bird Calls <span>Malta</span></div></div></header>
 <main>
-<section class="hero"><h1>Your music. One simple store.</h1><p>Buy high-quality MP3 tracks and download them after checkout. Perfect for independent artists and small music stores.</p><button onclick="document.getElementById('music').scrollIntoView()">Browse music ↓</button></section>
-<h2 id="music">MP3 Tracks</h2>
-<div id="tracks"></div>
-</main>
-<div class="cartbox" id="cartbox"><h3>Shopping cart</h3><div id="items"></div><p><b>Total: €<span id="total">0.00</span></b></p><button class="checkout" onclick="checkout()">Checkout</button><p class="note">Demo checkout: connect this button to Stripe Checkout or another payment provider. After successful payment, your server should issue secure, expiring MP3 download links.</p></div>
-<footer>© 2026 BeatBox · Digital music store</footer>
-<script>
-const tracks=[
-{id:1,name:"Neon Nights",artist:"Luna Vale",price:1.99},
-{id:2,name:"Late Checkout",artist:"Milo Grey",price:2.49},
-{id:3,name:"Drift",artist:"Aeris",price:1.49},
-{id:4,name:"Afterglow",artist:"Kite Club",price:2.99},
-{id:5,name:"Golden Hour",artist:"Northside",price:1.99}
-];
-let cart=[];
-function render(){
-document.getElementById("tracks").innerHTML=tracks.map(t=>`
-<article class="track"><div class="art">♫</div><div><h3>${t.name}</h3><small>${t.artist} · MP3</small><audio class="player" controls preload="none"><source src="audio/${t.id}.mp3" type="audio/mpeg">Your browser does not support audio.</audio></div><div class="buyrow"><span class="price">€${t.price.toFixed(2)}</span><button class="buy" onclick="add(${t.id})">Buy</button></div></article>`).join("");
-document.getElementById("count").textContent=cart.length;
-}
-function add(id){cart.push(tracks.find(t=>t.id===id));updateCart();document.getElementById("cartbox").classList.add("show")}
-function updateCart(){
-let items=document.getElementById("items");let total=cart.reduce((s,t)=>s+t.price,0);
-items.innerHTML=cart.length?cart.map((t,i)=>`<div class="item"><span>${t.name}</span><span>€${t.price.toFixed(2)} <button onclick="removeItem(${i})">×</button></span></div>`).join(""):"<p>Your cart is empty.</p>";
-document.getElementById("total").textContent=total.toFixed(2);document.getElementById("count").textContent=cart.length;
-}
-function removeItem(i){cart.splice(i,1);updateCart()}
-function toggleCart(){document.getElementById("cartbox").classList.toggle("show");updateCart()}
-function checkout(){if(!cart.length)return alert("Your cart is empty.");alert("Checkout placeholder. Connect this function to Stripe Checkout. After payment, generate secure download links for the purchased MP3 files.");}
-render();
-</script>
-</body>
-</html>
+<section class="hero"><h1>Bird Calls Malta</h1><p>Choose a bird call and purchase it for <strong>€3.00</strong>.</p></section>
+<h2>Bird calls — €3 each</h2>
+<div class="bird"><div class="icon">🐦</div><div class="info"><h3>Bird Call 01</h3><p>Malta bird recording · MP3</p></div><div><span class="price">€3.00</span><button class="buy" onclick="buy()">BUY</button></div></div>
+<div class="bird"><div class="icon">🦜</div><div class="info"><h3>Bird Call 02</h3><p>Malta bird recording · MP3</p></div><div><span class="price">€3.00</span><button class="buy" onclick="buy()">BUY</button></div></div>
+<div class="bird"><div class="icon">🕊️</div><div class="info"><h3>Bird Call 03</h3><p>Malta bird recording · MP3</p></div><div><span class="price">€3.00</span><button class="buy" onclick="buy()">BUY</button></div></div>
+<div class="notice"><strong>Payment:</strong> BUY opens your Revolut payment page. There is no download button.</div>
+</main><footer>© 2026 Bird Calls Malta</footer>
+<script>function buy(){window.location.href="https://revolut.me/abela1";}</script>
+</body></html>
